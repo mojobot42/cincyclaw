@@ -5,12 +5,23 @@ function App() {
   const [email, setEmail] = useState('')
   const [submitted, setSubmitted] = useState(false)
 
-  const handleSubmit = (e) => {
+  const [submitting, setSubmitting] = useState(false)
+
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    if (email) {
+    if (!email) return
+    setSubmitting(true)
+    try {
+      await fetch('/api/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      })
       setSubmitted(true)
-      // TODO: hook up to email service
+    } catch (err) {
+      alert('Something went wrong. Please try again.')
     }
+    setSubmitting(false)
   }
 
   return (
@@ -30,8 +41,8 @@ function App() {
             Your business deserves an AI that <span className="highlight">actually works</span> for you.
           </h1>
           <p className="hero-sub">
-            We build, deploy, and manage autonomous AI agents — powered by the same 
-            technology NVIDIA just bet their platform on. Local expertise. 
+            We build, deploy, and manage autonomous AI agents — and we're positioning 
+            to be early partners in NVIDIA's NemoClaw ecosystem. Local expertise. 
             Enterprise-grade AI. Cincinnati roots.
           </p>
 
@@ -45,14 +56,16 @@ function App() {
                   onChange={(e) => setEmail(e.target.value)}
                   required
                 />
-                <button type="submit">Get Early Access</button>
+                <button type="submit" disabled={submitting}>
+                  {submitting ? 'Sending...' : 'Get Early Access'}
+                </button>
               </form>
             ) : (
               <div className="success-msg">
                 🔥 You're in. We'll be in touch soon.
               </div>
             )}
-            <p className="cta-note">Join the waitlist. Limited spots for founding clients.</p>
+            <p className="cta-note">Sign up now for <span className="cta-highlight">free discovery</span></p>
           </div>
         </div>
 
@@ -69,8 +82,8 @@ function App() {
           </div>
           <div className="card">
             <div className="card-icon">🔒</div>
-            <h3>Privacy-First</h3>
-            <p>Built on NVIDIA OpenShell with enterprise-grade privacy routing. Your data stays yours. Local inference when it matters, cloud power when you need it.</p>
+            <h3>Privacy-First Options</h3>
+            <p>Beta access for NVIDIA OpenShell with enterprise-grade privacy routing. Your data stays yours. Local inference when it matters, cloud power when you need it.</p>
           </div>
           <div className="card">
             <div className="card-icon">⚡</div>

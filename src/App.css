@@ -181,6 +181,11 @@ body {
   margin-top: 0.75rem;
 }
 
+.cta-highlight {
+  color: var(--accent);
+  font-weight: 700;
+}
+
 /* Grid background */
 .grid-bg {
   position: absolute;
