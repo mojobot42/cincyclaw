@@ -65,7 +65,7 @@ function App() {
                 🔥 You're in. We'll be in touch soon.
               </div>
             )}
-            <p className="cta-note">Sign up now for <span className="cta-highlight">free discovery</span></p>
+            <p className="cta-note">Sign up now for a <span className="cta-highlight">free discovery call</span> with our team</p>
           </div>
         </div>
 
