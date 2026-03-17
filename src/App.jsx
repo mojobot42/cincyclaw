@@ -62,7 +62,7 @@ function App() {
               </form>
             ) : (
               <div className="success-msg">
-                🔥 You're in. We'll be in touch soon.
+                ✅ Thank you! Check your inbox — we've sent you a welcome email from info@cincyclaw.com.
               </div>
             )}
             <p className="cta-note">Sign up now for a <span className="cta-highlight">free discovery call</span> with our team</p>
